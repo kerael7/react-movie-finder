@@ -24,14 +24,14 @@ export default function Navbar() {
                     >
                         Recherche
                     </Link>
-                    {/*<Link*/}
-                    {/*    to="/favorites"*/}
-                    {/*    className={`nav-link ${*/}
-                    {/*        location.pathname === "/favorites" ? "active" : ""*/}
-                    {/*    }`}*/}
-                    {/*>*/}
-                    {/*    Favoris*/}
-                    {/*</Link>*/}
+                    <Link
+                        to="/favorites"
+                        className={`nav-link ${
+                            location.pathname === "/favorites" ? "active" : ""
+                        }`}
+                    >
+                        Favoris
+                    </Link>
                 </nav>
             </div>
         </header>

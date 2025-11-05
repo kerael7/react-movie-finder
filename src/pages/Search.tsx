@@ -18,11 +18,12 @@ export default function Search() {
     return (
         <div className="search-page">
             <div className="search-bar">
+                <p>Recherche de films :</p>
                 <input
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search for a movie..."
                 />
+                <button> Rechercher </button>
             </div>
 
             {loading && <p>Chargement...</p>}

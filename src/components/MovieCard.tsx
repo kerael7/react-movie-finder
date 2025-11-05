@@ -20,7 +20,7 @@ export default function MovieCard({ movie }: Props) {
                 <h4>{movie.title}</h4>
                 <p>{movie.release_date?.slice(0, 4)}</p>
                 <button onClick={() => toggleFavorite(movie)} className="fav-btn">
-                    {isFavorite ? "💔 Retirer" : "❤️ Sauver"}
+                    {isFavorite ? "💔 Retirer" : "❤️ Sauvegarder"}
                 </button>
             </div>
         </div>

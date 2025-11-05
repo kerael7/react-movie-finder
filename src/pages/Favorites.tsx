@@ -4,12 +4,11 @@ import MovieCard from "../components/MovieCard";
 export default function Favorites() {
     const { favorites } = useFavorites();
 
-    if (favorites.length === 0)
-        return <p style={{ textAlign: "center" }}>Aucun favori pour le moment</p>;
-
     return (
-        <div className="favorites-page">
-            <h2>Mes favoris</h2>
+        <div className="search-page">
+            <h1 className="main-title">❤️ Mes favoris</h1>
+            {favorites.length === 0 && <p>Aucun favori pour le moment 🥲</p>}
+
             <div className="movie-grid">
                 {favorites.map((movie) => (
                     <MovieCard key={movie.id} movie={movie} />
