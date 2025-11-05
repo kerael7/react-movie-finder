@@ -202,3 +202,66 @@ body {
 .fav-icon-btn:hover {
     transform: scale(1.2);
 }
+
+
+.detail-page {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.detail-content {
+    display: flex;
+    gap: 2rem;
+    max-width: 1000px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.detail-poster {
+    width: 280px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px var(--card-shadow);
+}
+
+.detail-info {
+    flex: 1;
+}
+
+.detail-info h1 {
+    margin-bottom: 0.25rem;
+}
+
+.detail-info .year,
+.detail-info .rating {
+    color: gray;
+    margin-bottom: 0.25rem;
+}
+
+.detail-info .overview {
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .detail-content {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    .detail-poster {
+        width: min(65%, 320px);
+    }
+}
+
+
+.movie-card a {
+    text-decoration: none;
+    color: inherit;         /* keep the same text color */
+}
+
+.movie-card a:hover {
+    color: var(--primary);  /* optional: nice hover color */
+    text-decoration: none;  /* still no underline on hover */
+}
+

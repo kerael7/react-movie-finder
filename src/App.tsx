@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Favorites from "./pages/Favorites";
 import Navbar from "./components/Navbar";
+import MovieDetail from "./pages/MovieDetail.tsx";
 
 
 
@@ -14,6 +15,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/search" element={<Search />} />
+                    <Route path="/movie/:id" element={<MovieDetail />} />
                     <Route path="/favorites" element={<Favorites />} />
                 </Routes>
             </main>
