@@ -7,7 +7,7 @@ const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 export default function MovieDetail() {
     const { id } = useParams<{ id: string }>();
 
-    const { data, loading } = useFetch<Movie & { credits?: never }>(
+    const { data, loading } = useFetch<Movie & { credits?: any }>(
         id
             ? `https://api.themoviedb.org/3/movie/${id}?api_key=e73af6fd20ee93da95173006d6e336a8&language=fr-FR&append_to_response=credits`
             : undefined
@@ -20,6 +20,7 @@ export default function MovieDetail() {
         : "https://via.placeholder.com/300x450?text=No+Image";
 
     const genres = data.genres?.map(g => g.name).join(", ") || "Non spécifié";
+    const cast = data.credits?.cast?.slice(0, 5).map((a: any) => a.name).join(", ") || "Non disponible";
 
     return (
         <div className="detail-page">
@@ -39,6 +40,8 @@ export default function MovieDetail() {
                         <strong>Synopsis :</strong><br />
                         {data.overview || "Aucun résumé disponible."}
                     </p>
+
+                    <p><strong>Acteurs principaux :</strong> {cast}</p>
 
                     {data.homepage && (
                         <a href={data.homepage} target="_blank" className="detail-link">

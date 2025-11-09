@@ -1,35 +1,33 @@
-import { useState } from "react";
+import { useSearch } from "../context/SearchContext";
 import { useFetch } from "../hooks/useFetch";
-import type { MovieResponse } from "../types/Movie";
 import MovieCard from "../components/MovieCard";
+import type { MovieResponse } from "../types/Movie";
 
 export default function Search() {
-    const [query, setQuery] = useState("");
+    const { query, setQuery, results, setResults } = useSearch();
 
-    const url =
-        query.trim().length >= 3
+    const { data, loading } = useFetch<MovieResponse>(
+        query.trim().length >= 2
             ? `https://api.themoviedb.org/3/search/movie?api_key=e73af6fd20ee93da95173006d6e336a8&query=${encodeURIComponent(
                 query.trim()
             )}`
-            : undefined;
+            : undefined
+    );
 
-    const { data, loading } = useFetch<MovieResponse>(url);
+    if (data && data.results && results !== data.results) {
+        setResults(data.results);
+    }
 
     return (
         <div className="search-page">
             <div className="search-bar">
-                <p>Recherche de films :</p>
-                <input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                />
-                <button> Rechercher </button>
+                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cherche un film..." />
             </div>
 
             {loading && <p>Chargement...</p>}
 
             <div className="movie-grid">
-                {data?.results?.map((movie) => (
+                {results?.map((movie) => (
                     <MovieCard key={movie.id} movie={movie} />
                 ))}
             </div>
