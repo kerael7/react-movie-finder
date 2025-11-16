@@ -4,11 +4,12 @@ export type Movie = {
     poster_path: string | null;
     release_date?: string;
     overview?: string;
-    vote_average?: number;
+    vote_average: number;
     runtime?: number;
     original_language?: string;
     homepage?: string;
     genres?: { id: number; name: string }[];
+    genre_ids?: number[];
     credits?: {
         cast?: {
             id: number;
@@ -26,3 +27,13 @@ export type MovieResponse = {
     total_results: number;
     total_pages: number;
 };
+
+export type Genre = {
+    id: number;
+    name: string;
+};
+
+export type GenreResponse = {
+    genres: Genre[];
+};
+

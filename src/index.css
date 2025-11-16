@@ -337,4 +337,51 @@ input:checked + .slider:before {
     transform: translateX(24px);
 }
 
+.filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.filter-input {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.filter-input:focus {
+    border-color: var(--primary);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+.page-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+}
+
+.page-btn:hover {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.page-btn.active {
+    background-color: var(--primary);
+    color: #fff;
+    font-weight: 600;
+}
 
