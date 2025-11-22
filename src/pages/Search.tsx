@@ -66,7 +66,6 @@ export default function Search() {
 
     return (
         <div className="search-page">
-            {/* Barre de recherche */}
             <div className="search-bar">
                 <input
                     value={query}

@@ -7,7 +7,7 @@ export default function Favorites() {
     return (
         <div className="search-page">
             <h1 className="main-title">❤️ Mes favoris</h1>
-            {favorites.length === 0 && <p>Aucun favori pour le moment 🥲</p>}
+            {favorites.length === 0 && <p>Aucun favori pour le moment </p>}
 
             <div className="movie-grid">
                 {favorites.map((movie) => (

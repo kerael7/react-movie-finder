@@ -30,7 +30,6 @@ export default function Navbar() {
                 </nav>
             </div>
 
-            {/* Toggle placé à droite */}
             <div className="navbar-right">
                 <label className="theme-switch">
                     <input
