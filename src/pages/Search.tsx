@@ -4,7 +4,7 @@ import { useFetch } from "../hooks/useFetch";
 import MovieCard from "../components/MovieCard";
 import type { GenreResponse, MovieResponse } from "../types/Movie";
 import { api } from "../proxy/proxy";
-import { useEffect, useState } from "react";
+import {useEffect, useMemo, useState} from "react";
 
 export default function Search() {
     const { query, setQuery, results, setResults } = useSearch();
@@ -48,24 +48,21 @@ export default function Search() {
     }, [data, setResults]);
 
     // Filtres
-    const filteredResults = results
-        ?.filter((movie) =>
-            minYear
-                ? Number(movie.release_date?.slice(0, 4)) >= Number(minYear)
-                : true
-        )
-        .filter((movie) =>
-            minRating ? movie.vote_average >= Number(minRating) : true
-        )
-        .filter((movie) =>
-            selectedGenre
-                ? movie.genre_ids?.includes(Number(selectedGenre)) ||
-                movie.genres?.some((g) => g.id === Number(selectedGenre))
-                : true
-        );
+    const filteredResults = useMemo(() => {
+        return results
+            ?.filter(movie => minYear ? Number(movie.release_date?.slice(0, 4)) >= Number(minYear) : true)
+            .filter(movie => minRating ? movie.vote_average >= Number(minRating) : true)
+            .filter(movie =>
+                selectedGenre
+                    ? movie.genre_ids?.includes(Number(selectedGenre)) ||
+                    movie.genres?.some(g => g.id === Number(selectedGenre))
+                    : true
+            );
+    }, [results, minYear, minRating, selectedGenre]);
+
 
     const totalPages = data?.total_pages ?? 0;
-    const pagesToShow = Math.min(totalPages, 5); // on limite à 5 boutons par simplicité
+    const pagesToShow = Math.min(totalPages, 5);
 
     return (
         <div className="search-page">
@@ -78,7 +75,6 @@ export default function Search() {
                 />
             </div>
 
-            {/* 🎚 Filtres */}
             <div className="filters">
                 <input
                     type="number"

@@ -154,6 +154,8 @@ body {
 }
 
 .movie-card {
+    max-width: 260px;
+    margin: 0 auto;
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
@@ -162,7 +164,24 @@ body {
     display: flex;
     flex-direction: column;
     transition: transform .25s ease;
+    justify-content: space-between;
+    height: 420px;
 }
+
+.movie-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.movie-card-link:visited {
+    color: inherit;
+}
+
+.movie-card-link:hover h4 {
+    color: var(--primary);
+}
+
 
 .movie-card:hover {
     transform: translateY(-6px);
@@ -175,14 +194,21 @@ body {
 }
 
 .movie-info {
-    margin-top: auto;
-    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0.6rem;
 }
 
 .movie-info h4 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: .3rem;
+    text-align: center;
+    line-height: 1.2;
+    max-height: 2.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .movie-info p {
@@ -252,17 +278,6 @@ body {
     .detail-poster {
         width: min(65%, 320px);
     }
-}
-
-
-.movie-card a {
-    text-decoration: none;
-    color: inherit;         /* keep the same text color */
-}
-
-.movie-card a:hover {
-    color: var(--primary);  /* optional: nice hover color */
-    text-decoration: none;  /* still no underline on hover */
 }
 
 :root[data-theme="light"] {
@@ -384,4 +399,33 @@ input:checked + .slider:before {
     color: #fff;
     font-weight: 600;
 }
+
+.fav-btn {
+    margin-top: 0.5rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    border: none;
+    background: rgba(236, 72, 153, 0.12);
+    color: #ec4899;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.fav-btn:hover {
+    background: rgba(236, 72, 153, 0.22);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.fav-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 

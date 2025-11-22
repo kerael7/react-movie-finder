@@ -10,11 +10,8 @@ export default function Home() {
         api("/trending/movie/week")
     );
 
-    // useMemo pour éviter que la liste soit recalculée à chaque render
     const movieList = useMemo(() => {
         if (!data?.results) return null;
-        console.log("Recalcul de la liste");
-
         return data.results.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
         ));

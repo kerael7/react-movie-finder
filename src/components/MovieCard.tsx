@@ -1,3 +1,4 @@
+import { memo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../context/FavoritesContext";
 import type { Movie } from "../types/Movie";
@@ -8,19 +9,17 @@ type Props = {
     movie: Movie;
 };
 
-export default function MovieCard({ movie }: Props) {
+function MovieCard({ movie }: Props) {
     const { favorites, toggleFavorite } = useFavorites();
     const isFavorite = favorites.some((m) => m.id === movie.id);
 
     const posterUrl = `${IMAGE_BASE_URL}${movie.poster_path}`;
 
-    // --- IMPORTANT ---
-    // On empêche le clic sur le bouton de déclencher la navigation
-    const handleFavoriteClick = (e: React.MouseEvent) => {
-        e.preventDefault(); // empêche la navigation
-        e.stopPropagation(); // empêche le click de remonter
+    const handleFavoriteClick = useCallback((e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
         toggleFavorite(movie);
-    };
+    }, [toggleFavorite, movie]);
 
     return (
         <Link to={`/movie/${movie.id}`} className="movie-card-link">
@@ -39,3 +38,5 @@ export default function MovieCard({ movie }: Props) {
         </Link>
     );
 }
+
+export default memo(MovieCard);
